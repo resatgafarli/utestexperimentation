@@ -1,12 +1,18 @@
-project(Example)
 cmake_minimum_required(VERSION 3.8)
-add_executable(Example main.cpp)
-link_directories(D:/GitHub/googletest/build/googlemock D:/GitHub/googletest/build/googlemock/gtest) 
-target_link_libraries(Example D:/GitHub/googletest/build/googlemock/gtest/libgtest.a)
-target_link_libraries(Example D:/GitHub/googletest/build/googlemock/gtest/libgtest_main.a)
-target_link_libraries(Example D:/GitHub/googletest/build/googlemock/libgmock.a)
-target_link_libraries(Example D:/GitHub/googletest/build/googlemock/libgmock_main.a)
+include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 
-include_directories(D:/GitHub/googletest/googlemock/include)
-include_directories(D:/GitHub/googletest/googletest/include)
+ExternalProject_Add(googletest
+  URL ../googletest
+  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/../googletest_distribution
+  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+)
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/../googletest_distribution/include)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/../googletest_distribution/include)
+link_directories(${CMAKE_CURRENT_BINARY_DIR}/../googletest_distribution/lib) 
+
+project(Example)
+add_executable(Example main.cpp)
+target_link_libraries(Example ${CMAKE_CURRENT_BINARY_DIR}/../googletest_distribution/lib/libgtest.a libgtest_main.a libgmock.a libgmock_main.a)
+
 

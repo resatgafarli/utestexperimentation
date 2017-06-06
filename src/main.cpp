@@ -1,6 +1,12 @@
 #include <iostream>
 #include "gmock/gmock.h"
 
+
+/*---------- In Order To Access Private Data Members ---------------------*/
+#define private public
+
+
+
 /*-------------------------------- The class ---------------------------------------*/
 struct AIntr {
     virtual int getVal() = 0;
@@ -40,19 +46,18 @@ struct MockA: public AIntr{
 };
 
 /*------------------------ Tests --------------------------*/
-
-
-
-
 TEST(AClassTest, GetAClassValue) {
     A a;
-    EXPECT_EQ(10,a.getVal());
+
+    EXPECT_EQ(10,a.val);//Access to private members
 }
 
 using ::testing::Return;
+using ::testing::AtLeast;
 TEST(BClassTest, GetBClassValue){
     MockA mockA;
-    EXPECT_CALL(mockA,getVal()).WillRepeatedly(Return(100));
+    EXPECT_CALL(mockA,getVal()).
+            WillRepeatedly(Return(100));
 
     //Production code declaration is "BTemp<A> B(realDependenObjectRefernece);"
     BTemp<MockA> b(mockA);

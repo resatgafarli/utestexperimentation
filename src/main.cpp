@@ -57,6 +57,7 @@ using ::testing::AtLeast;
 TEST(BClassTest, GetBClassValue){
     MockA mockA;
     EXPECT_CALL(mockA,getVal()).
+            Times(AtLeast(1)).
             WillRepeatedly(Return(100));
 
     //Production code declaration is "BTemp<A> B(realDependenObjectRefernece);"

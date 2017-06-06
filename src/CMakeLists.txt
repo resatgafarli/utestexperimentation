@@ -10,8 +10,8 @@ ExternalProject_Add(googletest
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
 )
 
-
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../googletest_distribution/include)
+link_directories (${CMAKE_CURRENT_SOURCE_DIR}/../googletest_distribution/lib)
 project(Example)
 add_executable(Example main.cpp)
 

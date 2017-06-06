@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 3.8)
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 ExternalProject_Add(googletest
-  URL ../googletest
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../googletest
   PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/../googletest_distribution
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
 )
 
-#ExternalProject_Get_Property(googletest install_dir)
-#include_directories(${install_dir}/include)
+set(CMAKE_C_COMPILER "gcc")
+set(CMAKE_CXX_COMPILER "g++")
+
 
 project(Example)
 add_executable(Example main.cpp)

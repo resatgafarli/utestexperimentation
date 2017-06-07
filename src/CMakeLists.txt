@@ -22,7 +22,7 @@ file(GLOB LDAF_SRC  ${CMAKE_CURRENT_SOURCE_DIR}/../ldaf/src/LDAF/ "*.cpp")
 
 # Main Project Definition LDAF Source Code Inclusion
 project(LDAF_Tester)
-add_executable(LDAF_Tester main.cpp tst_ldaf.cpp ${LDAF_SRC})
+add_executable(LDAF_Tester main.cpp ${LDAF_SRC})
 
 # Goole Test Dependency Definition
 add_dependencies(LDAF_Tester googletest)

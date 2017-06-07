@@ -6,6 +6,9 @@ License: GPL-3.0
 *******************************************************/
 #ifndef TST_LDAF_H
 #define TST_LDAF_H
+#include "gmock/gmock.h"
+#define private public
+#include "ldafbase.h"
 
 
 

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "gmock/gmock.h"
-
+#include "ldafbase.h"
 
 /*---------- In Order To Access Private Data Members ---------------------*/
 #define private public

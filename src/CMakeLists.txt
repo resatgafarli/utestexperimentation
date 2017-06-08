@@ -22,20 +22,21 @@ file(GLOB LDAF_SRC  ${CMAKE_CURRENT_SOURCE_DIR}/../ldaf/src/LDAF/ "*.cpp")
 
 # Main Project Definition LDAF Source Code Inclusion
 project(LDAF_Tester)
-add_executable(LDAF_Tester main.cpp ${LDAF_SRC})
+set (SOURCE main.cpp)
+add_executable(${PROJECT_NAME} ${SOURCE} ${LDAF_SRC})
 
 # Goole Test Dependency Definition
-add_dependencies(LDAF_Tester googletest)
-target_link_libraries(LDAF_Tester  libgtest.a libgtest_main.a libgmock.a libgmock_main.a)
+add_dependencies(${PROJECT_NAME} googletest)
+target_link_libraries(${PROJECT_NAME}  libgtest.a libgtest_main.a libgmock.a libgmock_main.a)
 
 # Thread Dependency Definition
 find_package(Threads REQUIRED)
-target_link_libraries(LDAF_Tester ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 
 #QT Library Definition/Inclusion
 #!!! QT bin path should be added in PATH list 
 set(CMAKE_AUTOMOC ON)
 find_package(Qt5Core)
-target_link_libraries(LDAF_Tester Qt5::Core)
+target_link_libraries(${PROJECT_NAME} Qt5::Core)
 
 

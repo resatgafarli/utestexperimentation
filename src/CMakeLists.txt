@@ -21,7 +21,7 @@ file(GLOB LDAF_SRC  ${CMAKE_CURRENT_SOURCE_DIR}/../ldaf/src/LDAF/ "*.cpp")
 
 
 # Main Project Definition LDAF Source Code Inclusion
-project(LDAF_Tester)
+project(ldaf_tester)
 set (SOURCE main.cpp)
 add_executable(${PROJECT_NAME} ${SOURCE} ${LDAF_SRC})
 

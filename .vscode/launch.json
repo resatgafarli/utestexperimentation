@@ -8,7 +8,7 @@
             "program": "${workspaceRoot}/src/ldaf_tester",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "{workspaceRoot}/src",
+            "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",

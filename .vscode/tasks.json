@@ -5,8 +5,20 @@
     "command": "bash",
     "isShellCommand": true,
     "args": ["-c"],
-    "showOutput": "always"
+    "showOutput": "always",
         "options": {
         "cwd": "${workspaceRoot}/src"
     },
+     "tasks": [
+        {
+            "taskName": "cmake",
+            "command":"cmake",
+            "args": ["${workspaceRoot}/src/CMakeLists.txt"]     
+        },
+        {
+            "taskName": "make",
+            "args": ["make -j 8"],
+            "isBuildCommand": true            
+        }
+     ]
 }

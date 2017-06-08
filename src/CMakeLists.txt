@@ -16,7 +16,7 @@ link_directories (${CMAKE_CURRENT_SOURCE_DIR}/../googletest_distribution/lib)
 
 # LDAF Source Code Inclusion
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../ldaf/src/LDAF)
-file(GLOB LDAF_SRC  ${CMAKE_CURRENT_SOURCE_DIR}/../ldaf/src/LDAF/ "*.cpp")
+
 
 
 

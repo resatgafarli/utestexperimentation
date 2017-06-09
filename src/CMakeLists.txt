@@ -59,8 +59,9 @@ target_link_libraries(${PROJECT_NAME} Qt5::Core)
 ######################### End of Dependency And Link Settings ##########################
 
 ######################### Testing Section ##############################################
-enable_testing()
-add_test(LDAF_TESTING ${PROJECT_NAME})
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${PROJECT_NAME})
 ######################### End of Testing Section #######################################
 
 

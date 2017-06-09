@@ -32,12 +32,15 @@ link_directories (${CMAKE_CURRENT_SOURCE_DIR}/../googletest_distribution/lib)
 ############################ LDAF Settings ###################################
 # LDAF Source Code Inclusion
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../ldaf/src/LDAF)
-# TODO set SOURCES in hear 
+set (SOURCES  ${SOURCES} 
+    ../ldaf/src/LDAF/ldafbase.cpp
+)
+ 
 
 ############################ Main Executable Project Settings #################### 
 # Main Project Definition LDAF Source Code Inclusion
 project(ldaf_tester)
-set (SOURCES  main.cpp tst_ldaf.cpp ${SOURCES})
+set (SOURCES  ${SOURCES} main.cpp tst_ldaf.cpp )
 add_executable(${PROJECT_NAME} ${SOURCES})
 ############################ End of Main Executable Project Settings ############# 
 

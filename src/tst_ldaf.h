@@ -8,18 +8,13 @@ License: GPL-3.0
 #define TST_LDAF_H
 #include "gmock/gmock.h"
 #define private public
-//#include "ldafbase.h"
+#define proteced public
+
+#include "ldafbase.h"
 #include <QObject>
 
-
-class deneme: public QObject {
-  Q_OBJECT
-public:
-  virtual void helloWord();
+class MockLDAFMessageType: public LDAFMessageType{
+  MOCK_METHOD0(setMessage,void());  
 };
-
-class deneme2: public deneme{
-
-}; 
 
 #endif // TST_LDAF_H

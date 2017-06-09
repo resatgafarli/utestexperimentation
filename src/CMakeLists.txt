@@ -1,9 +1,23 @@
-cmake_minimum_required(VERSION 3.8)
-include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
-
+######################### General Settings ######################
+cmake_minimum_required(VERSION 3.8.2)
 set(CMAKE_C_COMPILER "gcc")
 set(CMAKE_CXX_COMPILER "g++")
+######################## End Of General Settings ################
 
+################## Qt AUTOMOC Settings ##########################
+#!!!!Caution: Should Be defined at top of CMakeLists.txt 
+#QT Library Definition/Inclusion 
+#First install QT and set bin path to PATH list
+#Be shure insalled sudo apt-get install mesa-common-dev
+#The build and install cmake from source ./bootstrap --qt-gui, make, make install
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/resat/Qt/5.9/gcc_64)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+################# End of Qt AUTOMOC SETTINGS #######################
+
+
+#################### External Projects Settings ########################
+include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 # Google Test External Project Settings 
 ExternalProject_Add(googletest
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../googletest
@@ -13,30 +27,30 @@ ExternalProject_Add(googletest
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../googletest_distribution/include)
 link_directories (${CMAKE_CURRENT_SOURCE_DIR}/../googletest_distribution/lib)
+#################### End of External Projects Settings ########################
 
+############################ LDAF Settings ###################################
 # LDAF Source Code Inclusion
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../ldaf/src/LDAF)
+# TODO set SOURCES in hear 
 
-
-
-
+############################ Main Executable Project Settings #################### 
 # Main Project Definition LDAF Source Code Inclusion
 project(ldaf_tester)
-set (SOURCE main.cpp)
-add_executable(${PROJECT_NAME} ${SOURCE} ${LDAF_SRC})
+set (SOURCES  main.cpp tst_ldaf.cpp ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES})
+############################ End of Main Executable Project Settings ############# 
 
-# Goole Test Dependency Definition
+######################### Dependency And Link Settings ##########################
+# Goole Test Dependency and Link
 add_dependencies(${PROJECT_NAME} googletest)
 target_link_libraries(${PROJECT_NAME}  libgtest.a libgtest_main.a libgmock.a libgmock_main.a)
 
-# Thread Dependency Definition
+# Thread Link
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 
-#QT Library Definition/Inclusion
-#!!! QT bin path should be added in PATH list 
-set(CMAKE_AUTOMOC ON)
-find_package(Qt5Core)
+# Qt Link
+find_package(Qt5Core REQUIRED)
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
-
-
+######################### End of Dependency And Link Settings ##########################

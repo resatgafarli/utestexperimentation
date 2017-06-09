@@ -57,3 +57,10 @@ target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 find_package(Qt5Core REQUIRED)
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
 ######################### End of Dependency And Link Settings ##########################
+
+######################### Testing Section ##############################################
+enable_testing()
+add_test(LDAF_TESTING ${PROJECT_NAME})
+######################### End of Testing Section #######################################
+
+

@@ -2,10 +2,10 @@
 
 using ::testing::AtLeast;
 TEST(LDAFMessageTypeTest, LDAFMessageTypeConstruction){
-    MockLDAFMessageType ldafMessage(nullptr,nullptr,"testFunction");
-    EXPECT_CALL(ldafMessage, setMessage()).Times(AtLeast(1));
-    ldafMessage.setMessage();
-    EXPECT_EQ(ldafMessage.getBasicObject(),nullptr);
-    EXPECT_EQ(ldafMessage.getCallBackObject(),nullptr);
+    MockLDAFBase mockLDAFbase;
+    MockQObject mockQObject;
+    MockLDAFMessageType ldafMessage(&mockLDAFbase,&mockQObject,"testFunction");
+    EXPECT_EQ(ldafMessage.getBasicObject(),&mockLDAFbase);
+    EXPECT_EQ(ldafMessage.getCallBackObject(),&mockQObject);
     EXPECT_EQ(ldafMessage.getCallBackJSFunc(),"testFunction");    
 }

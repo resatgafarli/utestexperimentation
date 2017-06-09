@@ -8,8 +8,18 @@ License: GPL-3.0
 #define TST_LDAF_H
 #include "gmock/gmock.h"
 #include "ldafbase.h"
-#define private public
-#define proteced public
+
+class MockLDAFBase:public LDAFBase{
+public:
+
+   MOCK_METHOD3(setURLMessage,void(QUrl, QObject * , QString));
+   MOCK_METHOD3(setJsonMessage,void(QJsonObject, QObject * , QString));
+
+};
+
+class MockQObject:public QObject{
+
+};
 
 class MockLDAFMessageType: public LDAFMessageType{
 public:

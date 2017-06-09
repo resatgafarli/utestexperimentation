@@ -14,6 +14,7 @@ License: GPL-3.0
 #include <QObject>
 
 class MockLDAFMessageType: public LDAFMessageType{
+public:
   MOCK_METHOD0(setMessage,void());  
 };
 

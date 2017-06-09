@@ -1,12 +1,11 @@
 #include "tst_ldaf.h"
 
 using ::testing::AtLeast;
-TEST(LdafTestCase, LDAFMessageTypeTest){
-    MockLDAFMessageType ldafMessage;
-    EXPECT_CALL(ldafMessage, setMessage()).Times(AtLeast(2));
+TEST(LDAFMessageTypeTest, LDAFMessageTypeConstruction){
+    MockLDAFMessageType ldafMessage(nullptr,nullptr,"testFunction");
+    EXPECT_CALL(ldafMessage, setMessage()).Times(AtLeast(1));
     ldafMessage.setMessage();
-
-    //EXPECT_EQ(ldafMessage.m_basicObject,nullptr);
-    //EXPECT_EQ(ldafMessage.m_callBackObject,nullptr);
-    //EXPECT_EQ(ldafMessage.m_callBackJSFunc,"");    
+    EXPECT_EQ(ldafMessage.getBasicObject(),nullptr);
+    EXPECT_EQ(ldafMessage.getCallBackObject(),nullptr);
+    EXPECT_EQ(ldafMessage.getCallBackJSFunc(),"testFunction");    
 }
